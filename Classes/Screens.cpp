@@ -31,7 +31,7 @@ void Screens::Intro() {
 		"*----------------------------------------------------------------------------------------------------------------*\n"
 		"                                                                                                                  \n"
 		"                                             Welcome to Job Simulator                                             \n"
-		"                                               Created By Soulliom               **--                                 \n"
+		"                                               Created By Soulliom                                                \n"
 		"\n"
 		"\n"
 		"\n"
