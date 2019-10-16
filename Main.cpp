@@ -17,8 +17,8 @@ voids, pointers, preprocessor, etc. Try your best and please for the love of god
 #include <random>
 #include <cstring>
 
-#include "../Classes/Turn.h"
-#include "../Classes/Screens.h"
+#include "Turn.h"
+#include "Screens.h"
 
 /* Preproccessor Keystoke Buttons */
 #define ONE 49
