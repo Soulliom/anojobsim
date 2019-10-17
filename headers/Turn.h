@@ -16,11 +16,11 @@ public:
 	std::string career = "Start a new Job";
 
 	//Settings
-	char char_name[20] = "You";
-	int turn_limit = 0;
+	char charName[20] = "You";
+	int turnLimit = 0;
 	int seed = 0;
-	long long mark_goal = 1000000000;
-	int stress_cap = 100;
+	long long markGoal = 1000000000;
+	int stressCap = 100;
 
 	//Functions
 	void InitSeed();
@@ -35,6 +35,6 @@ public:
 	int randWage;
 	int wage = 0;
 	int randPromPerc;
-	int ConsDaysUntilFired;
+	int daysUntilFire;
 
 };
