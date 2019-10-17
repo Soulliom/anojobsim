@@ -28,6 +28,7 @@
 Turn T;
 
 void Screens::Intro() {
+	system("CLS");
 	std::cout << "\n" <<
 		"*----------------------------------------------------------------------------------------------------------------*\n"
 		"                                                                                                                  \n"
@@ -49,6 +50,7 @@ void Screens::Intro() {
 }
 
 void Screens::Settings(char *name_cur, int strs_cur, int seed_cur, int mark_cur, int turn_cur) {
+	system("CLS");
 	std::cout << "\n" <<
 		"*--------------------------------------------------------------------------------------------------------------------*\n"
 		"                                                                                                                  \n"
@@ -70,6 +72,7 @@ void Screens::Settings(char *name_cur, int strs_cur, int seed_cur, int mark_cur,
 }
 
 void Screens::CharSpecificSet(const char *setting_name, char setting_current[]) {
+	system("CLS");
 	std::cout << "\n" <<
 	"*--------------------------------------------------------------------------------------------------------------------*\n"
 		"\n"
@@ -91,6 +94,7 @@ void Screens::CharSpecificSet(const char *setting_name, char setting_current[]) 
 }
 
 void Screens::IntSpecificSet(const char* setting_name, int setting_current) {
+	system("CLS");
 	std::cout << "\n" <<
 		"*----------------------------------------------------------------------------------------------------------------*\n"
 		"\n"
@@ -112,6 +116,7 @@ void Screens::IntSpecificSet(const char* setting_name, int setting_current) {
 }
 
 void Screens::Menu(int num_of_t, int cap_of_t, int num_of_a, int strs, int strs_cap, int num_of_c, std::string career, int wage) {
+	system("CLS");
 	std::cout << "\n" <<
 		"*----------------------------------------------------------------------------------------------------------------*\n"
 		" Turn: " << num_of_t << " / " << cap_of_t <<   "                                          Cash: " << num_of_c << "\n"
@@ -134,6 +139,7 @@ void Screens::Menu(int num_of_t, int cap_of_t, int num_of_a, int strs, int strs_
 
 //Templates arent working for some reason LNK2019 
 void Screens::Specialty(const char* text1, const char* text2, const char* text3) {
+	system("CLS");
 	std::cout << "\n" <<
 		"*----------------------------------------------------------------------------------------------------------------*\n"
 		"\n"
@@ -155,6 +161,7 @@ void Screens::Specialty(const char* text1, const char* text2, const char* text3)
 }
 
 void Screens::Specialty(const char* text1, const char* text2, int text3, const char* text4) {
+	system("CLS");
 	std::cout << "\n" <<
 		"*----------------------------------------------------------------------------------------------------------------*\n"
 		"\n"
@@ -176,6 +183,7 @@ void Screens::Specialty(const char* text1, const char* text2, int text3, const c
 }
 
 void Screens::Specialty(const char* text1, const char* text2, int text3, const char* text4, int text5) {
+	system("CLS");
 	std::cout << "\n" <<
 		"*----------------------------------------------------------------------------------------------------------------*\n"
 		"\n"

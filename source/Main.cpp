@@ -1,10 +1,10 @@
 //note: if stress overexceeds loss of day little stress relief
 
 /* To Do */ 
-// Work Func
-// Variables
-// Mechanics
-// Debug
+// Work Func (Debug)
+// Win/loss (broke)
+// Other options
+// Debug debug debug
 
 #include <iostream>
 #include <conio.h>
@@ -46,7 +46,6 @@ int main() {
 
 		//Pause until space key is hit
 		if (_getch() == SPA) {
-			system("CLS");
 			break;
 		}
 	}
@@ -54,12 +53,10 @@ int main() {
 	//Settings
 	bool exit = false;
 	while (!exit) { 
-		system("CLS");
 		S.Settings(T.charName, T.stressCap, T.seed, T.markGoal, T.turnLimit); //Run settings screen
 		switch (_getch()) {
 			case ONE: //Name setting
 				while (true) {
-					system("CLS");
 					S.CharSpecificSet("Character Name, (Limit is 20 Characters)", T.charName); 
 					std::cin >> T.charName; //input for setting
 
@@ -75,7 +72,6 @@ int main() {
 
 			case TWO: //Stress setting
 				while (true) {
-					system("CLS");
 					S.IntSpecificSet("Stress Limit, (Cannot be below 25 nor higher than 200)", T.stressCap);
 					std::cin >> T.stressCap; //input for setting
 
@@ -94,14 +90,12 @@ int main() {
 				break;
 
 			case THR: //Seed setting
-				system("CLS");
 				S.IntSpecificSet("Game Seed, (0 for completely random)", T.seed);
 				std::cin >> T.seed;
 				break;
 
 			case FOR: //Mark setting
 				while (true) {
-					system("CLS");
 					S.IntSpecificSet("Mark Goal, (0 for default. Cannot be below 10,000 nor higher than 1,000,000,000)", T.markGoal);
 					std::cin >> T.markGoal;
 
@@ -121,7 +115,6 @@ int main() {
 
 			case FIV: //Limit on Turns setting
 				while (true) {
-					system("CLS");
 					S.IntSpecificSet("Turns Limit, (0 for none. Cannot be below 15 nor higher than 500)", T.turnLimit);
 					std::cin >> T.turnLimit;
 					
@@ -143,7 +136,6 @@ int main() {
 				break;
 
 			case ENT: //Start game / end settings 
-				system("CLS");
 				T.InitSeed();
 				exit = true;
 				break;
@@ -152,50 +144,63 @@ int main() {
 
 	//Game
 	while (!gameOver) {
-		system("CLS");
-		S.Menu(T.numOfTurns, T.turnLimit,T.numOfActions, T.stress, T.stressCap, T.amOfCash, T.career, T.wage);
-		switch (_getch()) {
+		// Easter Egg
+		if (T.countEE >= 5) {
+			T.EE();
+		}
+
+		else {
+			//Stress Check
+			if (T.stress < 0) {
+				T.stress = 0;
+			}
+			// Actual game
+			S.Menu(T.numOfTurns, T.turnLimit, T.numOfActions, T.stress, T.stressCap, T.amOfMarks, T.career, T.wage);
+			switch (_getch()) {
 			case ONE:
-				//Get a Job (based on amount of cash earning to find/get new job, select name, rand # of promotions, rand promotion benefit, rand base earnings)
 				T.Job();
 				break;
+
 			case TWO:
-				//Work (good day: stress relief + money, okay day: money, bad day, stress + money)
-				//T.Work();
+				T.Work();
 				break;
+
 			case THR:
 				//Gamble (win: stress relief + money, lose: stress + loss of money)
 				//T.Gamble();
 				break;
+
 			case FOR:
 				//Illegal (success: more stress + money, lose: stress + loss of turn)
 				//T.Illegal
 				break;
+
 			case FIV:
 				//Stress Relief
 				//T.StrsRelief
 				break;
+
 			case ESC:
 				return 0;
 				break;
+
 			default:
-				continue;
 				break;
+				break;
+			}
+			gameOver = T.CheckTurn(gameOver);
 
+			/*Decide Whether Mark Loss, Turn Loss, or Win
+			if (T.amOfMarks < 0) {
+				MarkLoss();
+			}
+			else if (T.numOfTurns >= T.turnLimit && T.amOfMarks != 0) {
+				TurnLoss();
+			}
+			else {
+				Win();
+			}*/
 		}
-		gameOver = T.CheckTurn(gameOver);
-	}
-
-	//Decide Whether Mark Loss, Turn Loss, or Win
-
-	if (T.amOfCash < 0) {
-		MarkLoss();
-	}
-	else if (T.numOfTurns >= T.turnLimit) {
-		TurnLoss();
-	}
-	else {
-		Win();
 	}
 }
 
