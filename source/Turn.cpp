@@ -17,7 +17,7 @@ bool Turn::CheckTurn(bool check_over) {
 	}
 
 	//Win & Loss Conditions
-	if (numOfTurns == turn_limit) {
+	if (numOfTurns == turnLimit) {
 		return true;
 	}
 
@@ -25,7 +25,7 @@ bool Turn::CheckTurn(bool check_over) {
 		return true;
 	}
 
-	else if (amOfCash >= mark_goal) {
+	else if (amOfCash >= markGoal) {
 		return true;
 	}
 
@@ -99,5 +99,6 @@ void Turn::Job() {
 
 // Work Option
 void Turn::Work() {
-
+	amOfCash += wage;
+	
 }

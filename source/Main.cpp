@@ -26,7 +26,7 @@
 #define ENT 13 
 
 /* Variables */
-bool game_over = false;
+bool gameOver = false;
 bool win = false;
 
 /* Function Definitions */
@@ -34,12 +34,12 @@ void TurnLoss();
 void MarkLoss();
 void Win();
 
-//Init Classes
-Turn T;
-Screens S;
-
 int main() {
 	
+	//Init Classes
+	Turn T;
+	Screens S;
+
 	//Intro
 	S.Intro();
 	while(true){
@@ -55,15 +55,15 @@ int main() {
 	bool exit = false;
 	while (!exit) { 
 		system("CLS");
-		S.Settings(T.char_name, T.stress_cap, T.seed, T.mark_goal, T.turn_limit); //Run settings screen
+		S.Settings(T.charName, T.stressCap, T.seed, T.markGoal, T.turnLimit); //Run settings screen
 		switch (_getch()) {
 			case ONE: //Name setting
 				while (true) {
 					system("CLS");
-					S.CharSpecificSet("Character Name, (Limit is 20 Characters)", T.char_name); 
-					std::cin >> T.char_name; //input for setting
+					S.CharSpecificSet("Character Name, (Limit is 20 Characters)", T.charName); 
+					std::cin >> T.charName; //input for setting
 
-					if (strlen(T.char_name) > 20) {
+					if (strlen(T.charName) > 20) {
 						std::cout << "\nName is too long! Try again!\n";
 						system("PAUSE");
 					}
@@ -76,14 +76,14 @@ int main() {
 			case TWO: //Stress setting
 				while (true) {
 					system("CLS");
-					S.IntSpecificSet("Stress Limit, (Cannot be below 25 nor higher than 200)", T.stress_cap);
-					std::cin >> T.stress_cap; //input for setting
+					S.IntSpecificSet("Stress Limit, (Cannot be below 25 nor higher than 200)", T.stressCap);
+					std::cin >> T.stressCap; //input for setting
 
-					if (T.stress_cap < 25) {
+					if (T.stressCap < 25) {
 						std::cout << "\nStress limit cannot be below 25!\n";
 						system("PAUSE");
 					}
-					else if (T.stress_cap > 200) {
+					else if (T.stressCap > 200) {
 						std::cout << "\nStress limit cannot exceed 200!\n";
 						system("PAUSE");
 					}
@@ -102,14 +102,14 @@ int main() {
 			case FOR: //Mark setting
 				while (true) {
 					system("CLS");
-					S.IntSpecificSet("Mark Goal, (0 for default. Cannot be below 10,000 nor higher than 1,000,000,000)", T.mark_goal);
-					std::cin >> T.mark_goal;
+					S.IntSpecificSet("Mark Goal, (0 for default. Cannot be below 10,000 nor higher than 1,000,000,000)", T.markGoal);
+					std::cin >> T.markGoal;
 
-					if (T.mark_goal < 10000) {
+					if (T.markGoal < 10000) {
 						std::cout << "\nMark Goal cannot be below 10,000!\n";
 						system("PAUSE");
 					}
-					else if (T.mark_goal > 1000000) {
+					else if (T.markGoal > 1000000) {
 						std::cout << "\nMark Goal cannot exceed 1,000,000!\n";
 						system("PAUSE");
 					}
@@ -122,17 +122,17 @@ int main() {
 			case FIV: //Limit on Turns setting
 				while (true) {
 					system("CLS");
-					S.IntSpecificSet("Turns Limit, (0 for none. Cannot be below 15 nor higher than 500)", T.turn_limit);
-					std::cin >> T.turn_limit;
+					S.IntSpecificSet("Turns Limit, (0 for none. Cannot be below 15 nor higher than 500)", T.turnLimit);
+					std::cin >> T.turnLimit;
 					
-					if (T.turn_limit == 0) {
+					if (T.turnLimit == 0) {
 						//...Turn off turn limit
 					}
-					else if (T.turn_limit < 15) {
+					else if (T.turnLimit < 15) {
 						std::cout << "\nTurn Limit cannot be below 15!.\n";
 						system("PAUSE");
 					}
-					else if (T.turn_limit > 500) {
+					else if (T.turnLimit > 500) {
 						std::cout << "\nTurn Limit cannot exceed 500!.\n";
 						system("PAUSE");
 					}
@@ -151,9 +151,9 @@ int main() {
 	}
 
 	//Game
-	while (!game_over) {
+	while (!gameOver) {
 		system("CLS");
-		S.Menu(T.numOfTurns, T.turn_limit,T.numOfActions, T.stress, T.stress_cap, T.amOfCash, T.career, T.wage);
+		S.Menu(T.numOfTurns, T.turnLimit,T.numOfActions, T.stress, T.stressCap, T.amOfCash, T.career, T.wage);
 		switch (_getch()) {
 			case ONE:
 				//Get a Job (based on amount of cash earning to find/get new job, select name, rand # of promotions, rand promotion benefit, rand base earnings)
@@ -183,7 +183,7 @@ int main() {
 				break;
 
 		}
-		game_over = T.CheckTurn(game_over);
+		gameOver = T.CheckTurn(gameOver);
 	}
 
 	//Decide Whether Mark Loss, Turn Loss, or Win
@@ -191,7 +191,7 @@ int main() {
 	if (T.amOfCash < 0) {
 		MarkLoss();
 	}
-	else if (T.numOfTurns >= T.turn_limit) {
+	else if (T.numOfTurns >= T.turnLimit) {
 		TurnLoss();
 	}
 	else {
