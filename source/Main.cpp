@@ -10,6 +10,7 @@
 #include <conio.h>
 #include <string>
 #include <random>
+#include <cstring>
 
 #include "../headers/Turn.h"
 #include "../headers/Screens.h"
