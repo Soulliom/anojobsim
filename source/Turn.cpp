@@ -13,26 +13,34 @@
 Screens S;
 
 bool Turn::CheckTurn(bool check_over) {
+
+	//Stress Check
+	if (stress < 0) {
+		stress = 0;
+	}
+
+	//Turn Check
 	numOfActions--;
 	if (numOfActions <= 0) {
-		numOfTurns++;
 		numOfActions = 2;
+		numOfTurns++;
 	}
 
 	//Win & Loss Conditions
 	if (numOfTurns == turnLimit) {
-		return true;
+		//Loss by lack of turns
 	}
 
 	else if (amOfMarks < 0) {
-		return true;
+		//Loss by lack of marks
 	}
 
 	else if (amOfMarks >= markGoal) {
-		return true;
+		//Win by reaching goal
 	}
 
 	else {
+		//Continue game
 		return false;
 	}
 }
@@ -51,7 +59,7 @@ void Turn::Job() {
 	bool err = false;
 	while (!err){
 		S.Specialty("Please type in your perferred Job", "(Job title should be shorter than 40 characters)", "");
-		_getch();
+		system("PAUSE");
 
 		std::getline(std::cin,career);
 
@@ -134,21 +142,11 @@ void Turn::Work() {
 		}
 	}
 
+
 	else { //dont have a job
 		S.Specialty("You don't have a job.", "You walk around the city aimlessly.", "People passing by notice you.");
-		stress += 25;
+		stress += 10;
 		system("PAUSE");
 
-		if (++countEE == 5) { //Easter Egg
-			S.Specialty("Someone is... watching", "One adolescent in particular stares at you with disgust", "You walk home cautiously today... I don't want to be bothered");
-			system("PAUSE");
-		}
-	}
-}
-
-void Turn::EE() {
-	if (countEE == 5) {
-		S.Specialty("There is no more.", "You are bound to your destiny.", "Farewell.");
-		_getch();
 	}
 }

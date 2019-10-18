@@ -144,74 +144,36 @@ int main() {
 
 	//Game
 	while (!gameOver) {
-		// Easter Egg
-		if (T.countEE >= 5) {
-			T.EE();
+
+		S.Menu(T.numOfTurns, T.turnLimit, T.numOfActions, T.stress, T.stressCap, T.amOfMarks, T.career, T.wage);
+		switch (_getch()) {
+		case ONE:
+			T.Job();
+			break;
+
+		case TWO:
+			T.Work();
+			break;
+
+		case THR:
+			//Gamble (win: stress relief + money, lose: stress + loss of money)
+			//T.Gamble();
+			break;
+
+		case FOR:
+			//Illegal (success: more stress + money, lose: stress + loss of turn)
+			//T.Illegal
+			break;
+
+		case FIV:
+			//Stress Relief
+			//T.StrsRelief
+			break;
+
+		case ESC:
+			return 0;
+			break;
 		}
-
-		else {
-			//Stress Check
-			if (T.stress < 0) {
-				T.stress = 0;
-			}
-			// Actual game
-			S.Menu(T.numOfTurns, T.turnLimit, T.numOfActions, T.stress, T.stressCap, T.amOfMarks, T.career, T.wage);
-			switch (_getch()) {
-			case ONE:
-				T.Job();
-				break;
-
-			case TWO:
-				T.Work();
-				break;
-
-			case THR:
-				//Gamble (win: stress relief + money, lose: stress + loss of money)
-				//T.Gamble();
-				break;
-
-			case FOR:
-				//Illegal (success: more stress + money, lose: stress + loss of turn)
-				//T.Illegal
-				break;
-
-			case FIV:
-				//Stress Relief
-				//T.StrsRelief
-				break;
-
-			case ESC:
-				return 0;
-				break;
-
-			default:
-				break;
-				break;
-			}
-			gameOver = T.CheckTurn(gameOver);
-
-			/*Decide Whether Mark Loss, Turn Loss, or Win
-			if (T.amOfMarks < 0) {
-				MarkLoss();
-			}
-			else if (T.numOfTurns >= T.turnLimit && T.amOfMarks != 0) {
-				TurnLoss();
-			}
-			else {
-				Win();
-			}*/
-		}
+		gameOver = T.CheckTurn(gameOver);	
 	}
-}
-
-void TurnLoss() {
-	std::cout << "\n\nYou lost due to a lack of turns. Better Luck Next time!\n\n\n\n\n\n\n\n\n\n\n\n";
-}
-
-void MarkLoss() {
-	std::cout << "\n\nYou lost due to a debt in marks. Better Luck Next time!\n\n\n\n\n\n\n\n\n\n\n\n";
-}
-
-void Win() {
-	std::cout << "\n\nCongrats! You won!\n\n\n\n\n\n\n\n\n\n\n\n";
 }
