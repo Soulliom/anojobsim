@@ -7,20 +7,17 @@ class Turn {
 private:
 	// Job
 	bool jobBool = false;
-	int jobs; //Jobs available
-	int randNumOfJobFound; //Jobs Signed for 
-	int randWage; //Random wage
-	int actsUntilProm;
-	int randNumOfProm; //Random number of promotions
-	int randProm; //Random mark promotion
-	int daysUntilFired; //Days fired after not working
-	int promCount;
-	int randJobMood;
+	int jobs = 0; //Jobs available
+	int randNumOfJobFound = 0; //Jobs Signed for 
+	int randWage = 0; //Random wage
+	int actsUntilProm = 0;
+	int randNumOfProm = 0; //Random number of promotions
+	int randProm = 0; //Random mark promotion
+	int daysUntilFired = 0; //Days fired after not working
+	int promCount = 0;
+	int randJobMood = 0;
 
 public:
-
-	//Easter Egg
-	int countEE = 0;
 
 	//Ingame
 	int numOfTurns = 1;
@@ -38,7 +35,6 @@ public:
 	int stressCap = 100;
 
 	//Functions
-	void EE();
 	void InitSeed();
 	bool CheckTurn(bool check_over);
 	void Job();
