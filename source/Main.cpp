@@ -11,6 +11,8 @@
 #include <string>
 #include <random>
 #include <cstring>
+#include <stdlib.h>
+#include <windows.h>
 
 #include "../headers/Turn.h"
 #include "../headers/Screens.h"
@@ -28,11 +30,6 @@
 /* Variables */
 bool gameOver = false;
 bool win = false;
-
-/* Function Definitions */
-void TurnLoss();
-void MarkLoss();
-void Win();
 
 int main() {
 	
@@ -54,6 +51,7 @@ int main() {
 	bool exit = false;
 	while (!exit) { 
 		S.Settings(T.charName, T.stressCap, T.seed, T.markGoal, T.turnLimit); //Run settings screen
+		Sleep(1000);
 		switch (_getch()) {
 			case ONE: //Name setting
 				while (true) {
@@ -146,6 +144,7 @@ int main() {
 	while (!gameOver) {
 
 		S.Menu(T.numOfTurns, T.turnLimit, T.numOfActions, T.stress, T.stressCap, T.amOfMarks, T.career, T.wage);
+		Sleep(1000);
 		switch (_getch()) {
 		case ONE:
 			T.Job();

@@ -3,6 +3,7 @@
 #include <conio.h>
 #include <time.h>
 #include <string>
+#include <windows.h>
 
 #include "../headers/Turn.h"
 #include "../headers/Screens.h"
@@ -59,7 +60,7 @@ void Turn::Job() {
 	bool err = false;
 	while (!err){
 		S.Specialty("Please type in your perferred Job", "(Job title should be shorter than 40 characters)", "");
-		system("PAUSE");
+		Sleep(1000 * 2);
 
 		std::getline(std::cin,career);
 
@@ -76,9 +77,9 @@ void Turn::Job() {
 	randNumOfJobFound = rand() % jobs + 1;
 	if (randNumOfJobFound > jobs / 2) {
 		//Init Wage
-		randWage = rand() % 1200 + 400; //Base wage
+		randWage = rand() % 1000 + 400; //Base wage
 		randNumOfProm = rand() % jobs + 2 / 2 + 1; //amount of promotions
-		randProm = rand() % 450 + 50; //mark promotion
+		randProm = rand() % 600 + 50; //mark promotion
 		actsUntilProm = rand() % 10 + 5; //how many acts until a promotion
 		wage = randWage;
 		jobBool = true;
@@ -116,12 +117,14 @@ void Turn::Work() {
 			stress -= randStress;
 
 			S.Specialty("You work for the day! I had a great day today!", "Your balance is increased by: ", wage, "Your stress is reduced by: ", randStress);
+			Sleep(1000);
 			system("PAUSE");
 		}
 		else {
 			randStress = rand() % 15 + 1;
 			stress += randStress;
 			S.Specialty("You work, although you had a pretty bad day.", "Your balance is increased by: ", wage, "Your stress is increased by: ", randStress);
+			Sleep(1000);
 			system("PAUSE");
 		}
 
@@ -129,6 +132,7 @@ void Turn::Work() {
 		if (++promCount == actsUntilProm) {
 			if (randNumOfProm <= 0) { //if no more promotions left
 				S.Specialty("This job isn't willing to give you anymore promotions", "", "");
+				Sleep(1000);
 				system("PAUSE");
 			}
 			else if (randNumOfProm > 0) { //if promotions left
@@ -137,6 +141,7 @@ void Turn::Work() {
 				promCount = 0;
 				wage += randProm; //increase working wage
 				S.Specialty("You got promoted!", "You now will earn an extra: ", randProm, "");
+				Sleep(1000 * 2);
 				system("PAUSE");
 			}
 		}
