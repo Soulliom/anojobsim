@@ -1,10 +1,11 @@
-//note: if stress overexceeds loss of day little stress relief
+//note: if stress overexceeds loss of day little stress relief. + loss of money?
 
 /* To Do */ 
-// Work Func (Debug)
+// Stress R Function
 // Win/loss (broke)
 // Other options
 // Debug debug debug
+// FInd out how to convert to templates for less messier code
 
 #include <iostream>
 #include <conio.h>
@@ -51,11 +52,10 @@ int main() {
 	bool exit = false;
 	while (!exit) { 
 		S.Settings(T.charName, T.stressCap, T.seed, T.markGoal, T.turnLimit); //Run settings screen
-		Sleep(1000);
 		switch (_getch()) {
 			case ONE: //Name setting
 				while (true) {
-					S.CharSpecificSet("Character Name, (Limit is 20 Characters)", T.charName); 
+					S.CharSpecificSet("Character Name, (Limit is 20 Characters).", T.charName); 
 					std::cin >> T.charName; //input for setting
 
 					if (strlen(T.charName) > 20) {
@@ -70,7 +70,7 @@ int main() {
 
 			case TWO: //Stress setting
 				while (true) {
-					S.IntSpecificSet("Stress Limit, (Cannot be below 25 nor higher than 200)", T.stressCap);
+					S.IntSpecificSet("Stress Limit, (Cannot be below 25 nor higher than 200).", T.stressCap);
 					std::cin >> T.stressCap; //input for setting
 
 					if (T.stressCap < 25) {
@@ -144,7 +144,6 @@ int main() {
 	while (!gameOver) {
 
 		S.Menu(T.numOfTurns, T.turnLimit, T.numOfActions, T.stress, T.stressCap, T.amOfMarks, T.career, T.wage);
-		Sleep(1000);
 		switch (_getch()) {
 		case ONE:
 			T.Job();
@@ -166,12 +165,16 @@ int main() {
 
 		case FIV:
 			//Stress Relief
-			//T.StrsRelief
+			T.StrsRelief();
 			break;
 
 		case ESC:
 			return 0;
 			break;
+		
+		default:
+			T.numOfActions++;
+
 		}
 		gameOver = T.CheckTurn(gameOver);	
 	}

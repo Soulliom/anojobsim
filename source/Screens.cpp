@@ -1,5 +1,6 @@
 #include <iostream>
 #include <conio.h>
+#include <windows.h>
 
 #include "../headers/Turn.h"
 #include "../headers/Screens.h"
@@ -47,6 +48,7 @@ void Screens::Intro() {
 		"                                        |Press 'Space' the Key to Start|\n"
 		"                                        *------------------------------*\n"
 		"*----------------------------------------------------------------------------------------------------------------*\n";
+	Sleep(500);
 }
 
 void Screens::Settings(char *name_cur, int strs_cur, int seed_cur, int mark_cur, int turn_cur) {
@@ -69,6 +71,7 @@ void Screens::Settings(char *name_cur, int strs_cur, int seed_cur, int mark_cur,
 		"\n"
 		"                                                                                           Press Enter to Continue\n"
 		"*----------------------------------------------------------------------------------------------------------------*\n";
+	Sleep(500);
 }
 
 void Screens::CharSpecificSet(const char *setting_name, char setting_current[]) {
@@ -91,6 +94,7 @@ void Screens::CharSpecificSet(const char *setting_name, char setting_current[]) 
 		"\n"
 		"                                                                                         Press Enter to go Back\n"
 		"*----------------------------------------------------------------------------------------------------------------*\n";
+	Sleep(500);
 }
 
 void Screens::IntSpecificSet(const char* setting_name, int setting_current) {
@@ -113,6 +117,7 @@ void Screens::IntSpecificSet(const char* setting_name, int setting_current) {
 		"\n"
 		"                                                                                         Press Enter to go Back\n"
 		"*----------------------------------------------------------------------------------------------------------------*\n";
+	Sleep(500);
 }
 
 void Screens::Menu(int num_of_t, int cap_of_t, int num_of_a, int strs, int strs_cap, int num_of_c, std::string career, int wage) {
@@ -122,11 +127,11 @@ void Screens::Menu(int num_of_t, int cap_of_t, int num_of_a, int strs, int strs_
 		" 1. Start A New Job                                                   Turn: " << num_of_t << " / " << cap_of_t <<"\n"
 		"                                                                      Actions Remaining : " << num_of_a <<"\n"
 		" 2. Work\n"
-		"                                                                      Stress: " << strs << " / " << strs_cap << "\n"
-		" 3. Gamble                                                            Balance: " << num_of_c << "\n"
+		"                                                                      Balance: " << num_of_c << "\n"
+		" 3. Gamble                                                            Stress: " << strs << " / " << strs_cap << "\n"
 		"\n"
-		" 4. Illegal Activity                                                  Wage: " << wage << "\n"
-		"                                                                      Job: " << career << "\n"
+		" 4. Illegal Activity                                                  Job: " << career << "\n"
+		"                                                                      Wage: " << wage << "\n"
 		" 5. Stress Relief\n"
 		"\n"
 		"\n"
@@ -135,6 +140,7 @@ void Screens::Menu(int num_of_t, int cap_of_t, int num_of_a, int strs, int strs_
 		"\n"
 		"                                                                                                 Press Esc to Quit\n"
 		"*----------------------------------------------------------------------------------------------------------------*\n";
+	Sleep(500);
 }
 
 //Templates arent working for some reason LNK2019 
@@ -158,6 +164,7 @@ void Screens::Specialty(const char* text1, const char* text2, const char* text3)
 		"\n"
 		"\n"
 		"*----------------------------------------------------------------------------------------------------------------*\n";
+	Sleep(500);
 }
 
 void Screens::Specialty(const char* text1, const char* text2, int text3, const char* text4) {
@@ -180,6 +187,7 @@ void Screens::Specialty(const char* text1, const char* text2, int text3, const c
 		"\n"
 		"\n"
 		"*----------------------------------------------------------------------------------------------------------------*\n";
+	Sleep(500);
 }
 
 void Screens::Specialty(const char* text1, const char* text2, int text3, const char* text4, int text5) {
@@ -202,4 +210,5 @@ void Screens::Specialty(const char* text1, const char* text2, int text3, const c
 		"\n"
 		"\n"
 		"*----------------------------------------------------------------------------------------------------------------*\n";
+	Sleep(500);
 }
