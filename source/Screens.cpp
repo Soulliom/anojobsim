@@ -27,7 +27,7 @@
 */
 Turn T;
 
-void Screens::Intro() {
+void Screens<class T, class F, class I>::Intro() {
 	system("CLS");
 	std::cout << "\n" <<
 		"*----------------------------------------------------------------------------------------------------------------*\n"
@@ -49,7 +49,8 @@ void Screens::Intro() {
 		"*----------------------------------------------------------------------------------------------------------------*\n";
 }
 
-void Screens::Settings(char *name_cur, int strs_cur, int seed_cur, int mark_cur, int turn_cur) {
+template<class T, class F, class I>
+void Screens<class T, class F, class I>::Settings(char *name_cur, int strs_cur, int seed_cur, int mark_cur, int turn_cur) {
 	system("CLS");
 	std::cout << "\n" <<
 		"*--------------------------------------------------------------------------------------------------------------------*\n"
@@ -71,7 +72,8 @@ void Screens::Settings(char *name_cur, int strs_cur, int seed_cur, int mark_cur,
 		"*----------------------------------------------------------------------------------------------------------------*\n";
 }
 
-void Screens::CharSpecificSet(const char *setting_name, char setting_current[]) {
+template<class T, class F, class I>
+void Screens<class T, class F, class I>::CharSpecificSet(const char *setting_name, char setting_current[]) {
 	system("CLS");
 	std::cout << "\n" <<
 	"*--------------------------------------------------------------------------------------------------------------------*\n"
@@ -93,7 +95,8 @@ void Screens::CharSpecificSet(const char *setting_name, char setting_current[]) 
 		"*----------------------------------------------------------------------------------------------------------------*\n";
 }
 
-void Screens::IntSpecificSet(const char* setting_name, int setting_current) {
+template<class T, class F, class I>
+void Screens<class T, class F, class I>::IntSpecificSet(const char* setting_name, int setting_current) {
 	system("CLS");
 	std::cout << "\n" <<
 		"*----------------------------------------------------------------------------------------------------------------*\n"
@@ -115,7 +118,8 @@ void Screens::IntSpecificSet(const char* setting_name, int setting_current) {
 		"*----------------------------------------------------------------------------------------------------------------*\n";
 }
 
-void Screens::Menu(int num_of_t, int cap_of_t, int num_of_a, int strs, int strs_cap, int num_of_c, std::string career, int wage) {
+template<class T, class F, class I>
+void Screens<class T, class F, class I>::Menu(int num_of_t, int cap_of_t, int num_of_a, int strs, int strs_cap, int num_of_c, std::string career, int wage) {
 	system("CLS");
 	std::cout << "\n" <<
 		"*----------------------------------------------------------------------------------------------------------------*\n"
@@ -125,8 +129,8 @@ void Screens::Menu(int num_of_t, int cap_of_t, int num_of_a, int strs, int strs_
 		"                                                                      Stress: " << strs << " / " << strs_cap << "\n"
 		" 3. Gamble                                                            Balance: " << num_of_c << "\n"
 		"\n"
-		" 4. Illegal Activity                                                  Wage: " << wage << "\n"
-		"                                                                      Job: " << career << "\n"
+		" 4. Illegal Activity                                                  Job: " << career <<"\n"
+		"                                                                      Wage: " << wage << "\n"
 		" 5. Stress Relief\n"
 		"\n"
 		"\n"
@@ -136,53 +140,8 @@ void Screens::Menu(int num_of_t, int cap_of_t, int num_of_a, int strs, int strs_
 		"                                                                                                 Press Esc to Quit\n"
 		"*----------------------------------------------------------------------------------------------------------------*\n";
 }
-
-//Templates arent working for some reason LNK2019 
-void Screens::Specialty(const char* text1, const char* text2, const char* text3) {
-	system("CLS");
-	std::cout << "\n" <<
-		"*----------------------------------------------------------------------------------------------------------------*\n"
-		"\n"
-		<< text1  << "\n"
-		"\n"
-		<< text2 << "\n"
-		"\n"
-		<< text3 << "\n"
-		"\n"
-		"\n"
-		"\n"
-		"\n"
-		"\n"
-		"\n"
-		"\n"
-		"\n"
-		"\n"
-		"*----------------------------------------------------------------------------------------------------------------*\n";
-}
-
-void Screens::Specialty(const char* text1, const char* text2, int text3, const char* text4) {
-	system("CLS");
-	std::cout << "\n" <<
-		"*----------------------------------------------------------------------------------------------------------------*\n"
-		"\n"
-		<< text1 << "\n"
-		"\n"
-		<< text2 << " " << text3 << "\n"
-		"\n"
-		<< text4 <<"\n"
-		"\n"
-		"\n"
-		"\n"
-		"\n"
-		"\n"
-		"\n"
-		"\n"
-		"\n"
-		"\n"
-		"*----------------------------------------------------------------------------------------------------------------*\n";
-}
-
-void Screens::Specialty(const char* text1, const char* text2, int text3, const char* text4, int text5) {
+template<class T, class F, class I>
+void Screens<class T, class F, class I>::Specialty(T text1, I text2, F text3, I text4, F text5) {
 	system("CLS");
 	std::cout << "\n" <<
 		"*----------------------------------------------------------------------------------------------------------------*\n"
@@ -192,6 +151,29 @@ void Screens::Specialty(const char* text1, const char* text2, int text3, const c
 		<< text2 << " " << text3 << "\n"
 		"\n"
 		<< text4 << " " << text5 << "\n"
+		"\n"
+		"\n"
+		"\n"
+		"\n"
+		"\n"
+		"\n"
+		"\n"
+		"\n"
+		"\n"
+		"*----------------------------------------------------------------------------------------------------------------*\n";
+}
+
+template<class T, class F, class I>
+void Screens<class T, class F, class I>::Specialty(T text1, I text2, F text3, I text4) {
+	system("CLS");
+	std::cout << "\n" <<
+		"*----------------------------------------------------------------------------------------------------------------*\n"
+		"\n"
+		<< text1 << "\n"
+		"\n"
+		<< text2 << " " << text3 << "\n"
+		"\n"
+		<< text4 << "\n"
 		"\n"
 		"\n"
 		"\n"

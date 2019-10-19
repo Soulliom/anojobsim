@@ -11,7 +11,7 @@
 #define TWO 50
 #define ESC 27
 
-Screens S;
+Screens<std::string, char*, int> S;
 
 bool Turn::CheckTurn(bool check_over) {
 
@@ -57,9 +57,8 @@ void Turn::InitSeed() {
 
 //Job Option
 void Turn::Job() {
-	bool err = false;
 	while (!err){
-		S.Specialty("Please type in your perferred Job", "(Job title should be shorter than 40 characters)", "");
+		S.Specialty("Please type in your perferred Job", "(Job title should be shorter than 40 characters)", "", "");
 		Sleep(1000 * 2);
 
 		std::getline(std::cin,career);
@@ -131,7 +130,7 @@ void Turn::Work() {
 		//Promotions
 		if (++promCount == actsUntilProm) {
 			if (randNumOfProm <= 0) { //if no more promotions left
-				S.Specialty("This job isn't willing to give you anymore promotions", "", "");
+				S.Specialty((const char*)"This job isn't willing to give you anymore promotions", (const char*)"", (const char*)"", (const char*)"");
 				Sleep(1000);
 				system("PAUSE");
 			}
@@ -147,11 +146,18 @@ void Turn::Work() {
 		}
 	}
 
-
 	else { //dont have a job
-		S.Specialty("You don't have a job.", "You walk around the city aimlessly.", "People passing by notice you.");
+		S.Specialty("You don't have a job.", "You walk around the city aimlessly.", "", "");
 		stress += 10;
 		system("PAUSE");
-
 	}
+}
+
+void Turn::StrsRelief() {
+	S.Specialty("You take time to calm the nerves","What would you like to do?", "", "");
+	std::getline(std::cin, typeOfStrsR);
+	randStress = rand() % 15 + 5;
+	std::string strsType = "You " + typeOfStrsR;
+
+	S.Specialty(strsType, "Your stress is reduced by: ", randStress, " ");
 }
