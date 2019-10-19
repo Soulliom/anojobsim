@@ -1,8 +1,7 @@
 //note: if stress overexceeds loss of day little stress relief
 
 /* To Do */ 
-// Stress Relief
-// Due Payments
+// Work Func (Debug)
 // Win/loss (broke)
 // Other options
 // Debug debug debug
@@ -36,7 +35,7 @@ int main() {
 	
 	//Init Classes
 	Turn T;
-	Screens<class T, class F, class I> S;
+	Screens S;
 
 	//Intro
 	S.Intro();
@@ -167,7 +166,7 @@ int main() {
 
 		case FIV:
 			//Stress Relief
-			T.StrsRelief();
+			//T.StrsRelief
 			break;
 
 		case ESC:
