@@ -3,12 +3,15 @@
 #include <conio.h>
 #include <stdlib.h>
 
+/* Preproccessor Keystoke Buttons */
+#define ONE 49
+#define TWO 50
+
 class Turn {
 
 private:
 	// Job
 	bool jobBool = false;
-	int jobs = 0; //Jobs available
 	int randNumOfJobFound = 0; //Jobs Signed for 
 	int randWage = 0; //Random wage
 	int actsUntilProm = 0;
@@ -18,13 +21,21 @@ private:
 	int promCount = 0;
 	int randJobMood = 0;
 
+	//Hobby
+	int hobbyStressR = 0;
+	bool isHobby = false;
+	std::string sHobby = "No Hobby Yet";
+
+	//General
+	int rando = 0; //rand variable
+
 public:
 
 	//Ingame
 	int numOfTurns = 1;
 	int numOfActions = 2;
 	int amOfMarks = 1000;
-	int randStress;
+	int randStress = 0;
 	int stress = 0;
 	std::string career = "Start a new Job";
 
@@ -40,6 +51,7 @@ public:
 	bool CheckTurn(bool check_over);
 	void Job();
 	void Work();
+	void StrsRelief();
 
 	//Job
 	int wage = 0;
