@@ -17,10 +17,6 @@ private:
 	int daysUntilFired = 0; //Days fired after not working
 	int promCount = 0;
 	int randJobMood = 0;
-	bool err = false;
-
-	//Stress Relief
-	std::string typeOfStrsR;
 
 public:
 
@@ -44,7 +40,6 @@ public:
 	bool CheckTurn(bool check_over);
 	void Job();
 	void Work();
-	void StrsRelief();
 
 	//Job
 	int wage = 0;
