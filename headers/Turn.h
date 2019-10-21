@@ -52,6 +52,7 @@ public:
 	void Job();
 	void Work();
 	void StrsRelief();
+	void StrsLimt();
 
 	//Job
 	int wage = 0;
