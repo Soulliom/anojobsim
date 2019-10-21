@@ -1,11 +1,11 @@
 //note: if stress overexceeds loss of day little stress relief. + loss of money?
 
 /* To Do */ 
-// Stress R Function
+// Turns (Debuffs from stressing out) + level out stress multiplier by stress cap!
 // Win/loss (broke)
 // Other options
 // Debug debug debug
-// FInd out how to convert to templates for less messier code
+// Cleaner code
 
 #include <iostream>
 #include <conio.h>

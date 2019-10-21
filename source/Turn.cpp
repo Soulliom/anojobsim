@@ -16,16 +16,18 @@ Screens S;
 
 bool Turn::CheckTurn(bool check_over) {
 
-	//Stress Check
-	if (stress < 0) {
-		stress = 0;
-	}
-
 	//Turn Check
 	numOfActions--;
 	if (numOfActions <= 0) {
 		numOfActions = 2;
 		numOfTurns++;
+	}
+	//Stress Check
+	if (stress < 0) {
+		stress = 0;
+	}
+	if (stress >= stressCap) {
+		StrsLimt();
 	}
 
 	//Win & Loss Conditions
@@ -170,7 +172,7 @@ void Turn::StrsRelief() {
 		switch (_getch()) {
 		case ONE:
 			while (err) {
-				S.Specialty("What would you like to do as a hobby?", "(Hobby should be shorter than 20 characters).", "");
+				S.Specialty("What would you like to do as a hobby?", "(Hobby should be shorter than 20 characters).", "(Try not to use prefixes or suffixes)");
 
 				std::getline(std::cin, sHobby);
 
@@ -184,11 +186,16 @@ void Turn::StrsRelief() {
 				err = false;
 			}
 
-			rando = rand() % 14 + 1; //
-			hobbyStressR = rand() % rando + 1;
-			randStress = rand() % hobbyStressR + 5;
+			rando = rand() % 14 + 2;
+			hobbyStressR = rand() % rando + 2;
 			break;
 		case TWO:
+			if (!isHobby) {
+				S.Specialty("You dont have a hobby, Please try starting one first","","");
+				system("PAUSE");
+				StrsRelief();
+				break;
+			}
 			randStress = rand() % hobbyStressR + 5;
 			stress -= randStress;
 
@@ -202,4 +209,16 @@ void Turn::StrsRelief() {
 		}
 		break;
 	}
+}
+
+void Turn::StrsLimt() {
+	numOfTurns++;
+	if (stress > stressCap) {
+		stress = stressCap;
+	}
+	stress -= 15;
+
+
+	S.Specialty("You've gone over your stress limit, a turn is skipped.", "You should find a way to decrease your stress.", "Your stress is decreased by: 10");
+	system("PAUSE");
 }
