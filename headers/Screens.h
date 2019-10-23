@@ -11,6 +11,7 @@ private:
 
 public:
 	void Intro();
+	void Tutorial();
 	void Settings(char* name_cur, int strs_cur, int seed_cur, int mark_cur, int turn_cur);
 	void CharSpecificSet(const char *setting_name, char setting_current[]);
 	void IntSpecificSet(const char* setting_name, int setting_current);
