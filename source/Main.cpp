@@ -2,6 +2,7 @@
 
 /* To Do */ 
 // Turns (Debuffs from stressing out) + level out stress multiplier by stress cap!
+// Stress has direct connetion with payments and losses
 // Win/loss (broke)
 // Other options
 // Debug debug debug
@@ -40,11 +41,14 @@ int main() {
 
 	//Intro
 	S.Intro();
-	while(true){
+	while (true) {
 
 		//Pause until space key is hit
 		if (_getch() == SPA) {
 			break;
+		}
+		if (_getch() == ENT) {
+			S.Tutorial;
 		}
 	}
 

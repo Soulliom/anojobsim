@@ -21,6 +21,12 @@ bool Turn::CheckTurn(bool check_over) {
 	if (numOfActions <= 0) {
 		numOfActions = 2;
 		numOfTurns++;
+
+		payment = rand() % (wage / 2) + (wage) * (1 + stress/stressCap);
+		amOfMarks -= payment;
+
+		S.Specialty("Payments are due.", "You pay: ", payment, "");
+		system("PAUSE");
 	}
 	//Stress Check
 	if (stress < 0) {
@@ -79,9 +85,9 @@ void Turn::Job() {
 	randNumOfJobFound = rand() % rando + 1;
 	if (randNumOfJobFound >= (rando / 2)) {
 		//Init Wage
-		randWage = rand() % 600 + 400; //Base wage
+		randWage = rand() % 500 + 500; //Base wage
 		randNumOfProm = rand() % rando + 2 / 2 + 1; //amount of promotions
-		actsUntilProm = rand() % 10 + 5; //how many acts until a promotion
+		actsUntilProm = rand() % 5 + 5; //how many acts until a promotion
 		wage = randWage;
 		jobBool = true;
 
@@ -93,7 +99,7 @@ void Turn::Job() {
 		system("PAUSE");
 	}
 	else { //fail to find job
-		randStress = rand() % 14 + 5; //add stress
+		randStress = rand() % 10 + 5; //add stress
 		stress += randStress;
 
 		S.Specialty("Seems like you were not lucky enough to find a job.", "Your stress has been increased by:",randStress,"");
@@ -121,7 +127,7 @@ void Turn::Work() {
 			system("PAUSE");
 		}
 		else {
-			randStress = rand() % 15 + 3;
+			randStress =(rand() % 10 + 5) * (1 + stress/stressCap);
 			stress += randStress;
 			S.Specialty("You work, although you had a pretty bad day.", "Your balance is increased by: ", wage, "Your stress is increased by: ", randStress);
 			system("PAUSE");
@@ -135,8 +141,8 @@ void Turn::Work() {
 			}
 			else if (randNumOfProm > 0) { //if promotions left
 				randNumOfProm -= 1; //reduce num of promotions
-				randProm = rand() % 600 + 50; //reset 
-				actsUntilProm = rand() % 10 + 5; //reset acts until promotion
+				randProm = rand() % 800 + 200; //reset promotion earning
+				actsUntilProm = rand() % 5 + 5; //reset acts until promotion
 				promCount = 0; //reset promotion count
 				wage += randProm; //increase working wage
 
@@ -186,8 +192,8 @@ void Turn::StrsRelief() {
 				err = false;
 			}
 
-			rando = rand() % 14 + 2;
-			hobbyStressR = rand() % rando + 2;
+			rando = rand() % 5 + 7;
+			hobbyStressR = rand() % (stressCap / rando) + 2;
 			break;
 		case TWO:
 			if (!isHobby) {
@@ -196,7 +202,7 @@ void Turn::StrsRelief() {
 				StrsRelief();
 				break;
 			}
-			randStress = rand() % hobbyStressR + 5;
+			randStress = (rand() % hobbyStressR + 4) * (1 + stress / stressCap);
 			stress -= randStress;
 
 			S.Specialty(tempYouHob, "Your stress is decreased by: ", randStress, "");
@@ -216,9 +222,8 @@ void Turn::StrsLimt() {
 	if (stress > stressCap) {
 		stress = stressCap;
 	}
-	stress -= 15;
+	stress -= stressCap/4;
 
-
-	S.Specialty("You've gone over your stress limit, a turn is skipped.", "You should find a way to decrease your stress.", "Your stress is decreased by: 10");
+	S.Specialty("You've gone over your stress limit, a turn is skipped.", "You should find a way to decrease your stress.", "Your stress is decreased by: 15");
 	system("PAUSE");
 }
