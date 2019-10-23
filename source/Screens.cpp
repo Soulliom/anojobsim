@@ -8,7 +8,7 @@
 /* Screens must include spaces as empty spaces
 
 		Template:
-		"*-----------------------------------------------------------------------------------------------------------------*\n"
+		"*----------------------------------------------------------------------------------------------------------------*\n"
 		"\n"
 		"\n"
 		"\n"
@@ -32,30 +32,52 @@ void Screens::Intro() {
 	system("CLS");
 	std::cout << "\n" <<
 		"*----------------------------------------------------------------------------------------------------------------*\n"
-		"                                                                                                                  \n"
-		"                                             Welcome to Job Simulator                                             \n"
-		"                                               Created By Soulliom                                                \n"
+		"\n"
+		"                                             Welcome to Job Simulator\n"
+		"                                               Created By Soulliom\n"
 		"\n"
 		"\n"
 		"\n"
-		"                       The Goal is to earn the Mark(Dollar) goal in the least amount of Turns(Days)\n"                                     
+		"                                             Everything is Randomized\n"                                     
 		"\n"
 		"\n"
-		"                                  Every turn you will be able to use 2 actions.\n"
-		"                                          Everything is Randomized.\n"
+		"\n"
+		"                                         Press the 'Esc' for a tutorial\n"
 		"\n"
 		"                                        *------------------------------*\n"
-		"                                        |Press 'Space' the Key to Start|\n"
+		"                                        |Press the 'Space' Key to Start|\n"
 		"                                        *------------------------------*\n"
 		"*----------------------------------------------------------------------------------------------------------------*\n";
 	Sleep(500);
 }
 
+void Screens::Tutorial() {
+	system("CLS");
+	std::cout << "\n" <<
+		"*----------------------------------------------------------------------------------------------------------------*\n"
+			"\n"
+			"                                             Welcome to Job Simulator\n"
+			"                                               Created By Soulliom\n"
+			"\n"
+			"- Everything is randomized. Some jobs/hobbies will be better than others.\n"
+			"\n"
+			"- The more stress you have, the more difficult things will become\n"
+			"\n"
+			"- If you go below 0 marks, you lose the game. (If you enable a turn limit and go above that you will lose too)\n"
+			"\n"
+			"- \n"
+			"\n"
+			"\n"
+			"\n"
+			"                                                                                       Press Enter to Continue\n"
+			"*------------------------------------------------------------------------------------------------------------*\n";
+}
+
 void Screens::Settings(char *name_cur, int strs_cur, int seed_cur, int mark_cur, int turn_cur) {
 	system("CLS");
 	std::cout << "\n" <<
-		"*--------------------------------------------------------------------------------------------------------------------*\n"
-		"                                                                                                                  \n"
+		"*----------------------------------------------------------------------------------------------------------------*\n"
+		"\n"
 		"                                                   Job Simulator\n"
 		"                                                     Settings\n"
 		"\n"
@@ -92,7 +114,7 @@ void Screens::CharSpecificSet(const char *setting_name, char setting_current[]) 
 		"\n"
 		"\n"
 		"\n"
-		"                                                                                         Press Enter to go Back\n"
+		"                                                                                            Press Enter to go Back\n"
 		"*----------------------------------------------------------------------------------------------------------------*\n";
 	Sleep(500);
 }
@@ -115,7 +137,7 @@ void Screens::IntSpecificSet(const char* setting_name, int setting_current) {
 		"\n"
 		"\n"
 		"\n"
-		"                                                                                         Press Enter to go Back\n"
+		"                                                                                            Press Enter to go Back\n"
 		"*----------------------------------------------------------------------------------------------------------------*\n";
 	Sleep(500);
 }
