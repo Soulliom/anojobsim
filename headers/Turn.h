@@ -28,13 +28,14 @@ private:
 
 	//General
 	int rando = 0; //rand variable
+	int payment = 0; 
 
 public:
 
 	//Ingame
 	int numOfTurns = 1;
 	int numOfActions = 2;
-	int amOfMarks = 1000;
+	int amOfMarks = 5000; //Starting cash
 	int randStress = 0;
 	int stress = 0;
 	std::string career = "Start a new Job";
