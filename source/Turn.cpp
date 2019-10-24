@@ -22,11 +22,13 @@ bool Turn::CheckTurn(bool check_over) {
 		numOfActions = 2;
 		numOfTurns++;
 
-		payment = rand() % (wage / 2) + (wage) * (1 + stress/stressCap);
-		amOfMarks -= payment;
+		if (wage != 0) {
+			payment = rand() % (wage / 2) + (wage) * (1 + stress / stressCap);
+			amOfMarks -= payment;
 
-		S.Specialty("Payments are due.", "You pay: ", payment, "");
-		system("PAUSE");
+			S.Specialty("Payments are due.", "You pay: ", payment, "");
+			system("PAUSE");
+		}
 	}
 	//Stress Check
 	if (stress < 0) {
@@ -68,9 +70,9 @@ void Turn::InitSeed() {
 void Turn::Job() {
 	bool err = true;
 	while (err){
-		S.Specialty("Please type in your perferred Job.", "(Job title should be shorter than 40 characters).", "");
+		S.Specialty("Please type in your perferred Job.", "(Job title should be shorter than 40 characters).", "(Use underscores as spaces)");
 
-		std::getline(std::cin,career);
+		std::cin >> career;
 
 		if (career.size() > 40) {
 			std::cout << "Job Title is too long! Try again!\n";
@@ -178,10 +180,9 @@ void Turn::StrsRelief() {
 		switch (_getch()) {
 		case ONE:
 			while (err) {
-				S.Specialty("What would you like to do as a hobby?", "(Hobby should be shorter than 20 characters).", "(Try not to use prefixes or suffixes)");
+				S.Specialty("What would you like to do as a hobby?", "(Hobby should be shorter than 20 characters).", "(Use underscores as spaces)");
 
-				std::getline(std::cin, sHobby);
-
+				std::cin >> sHobby;
 
 				if (sHobby.size() > 20) {
 					std::cout << "Hobby name is too long! Try again!\n";
@@ -191,10 +192,10 @@ void Turn::StrsRelief() {
 				isHobby = true;
 				err = false;
 			}
-
-			rando = rand() % 5 + 7;
-			hobbyStressR = rand() % (stressCap / rando) + 2;
+			rando = rand() % 5 + 5;
+			hobbyStressR = rand() % (stressCap / rando) + 5;
 			break;
+
 		case TWO:
 			if (!isHobby) {
 				S.Specialty("You dont have a hobby, Please try starting one first","","");
@@ -202,7 +203,7 @@ void Turn::StrsRelief() {
 				StrsRelief();
 				break;
 			}
-			randStress = (rand() % hobbyStressR + 4) * (1 + stress / stressCap);
+			randStress = (rand() % hobbyStressR + hobbyStressR / 1.25) * (1 + (stress / stressCap));
 			stress -= randStress;
 
 			S.Specialty(tempYouHob, "Your stress is decreased by: ", randStress, "");

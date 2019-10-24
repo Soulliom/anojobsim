@@ -1,8 +1,8 @@
 //note: if stress overexceeds loss of day little stress relief. + loss of money?
 
 /* To Do */ 
-// Turns (Debuffs from stressing out) + level out stress multiplier by stress cap!
-// Stress has direct connetion with payments and losses
+// Random funcs for stress dont work well? fix?
+// Make stress more impactful < < <
 // Win/loss (broke)
 // Other options
 // Debug debug debug
@@ -19,7 +19,7 @@
 #include "../headers/Turn.h"
 #include "../headers/Screens.h"
 
-/* Preproccessor Keystoke Buttons */
+/* Preproccessor Keys */
 #define ONE 49
 #define TWO 50
 #define THR 51
@@ -41,14 +41,21 @@ int main() {
 
 	//Intro
 	S.Intro();
-	while (true) {
-
-		//Pause until space key is hit
-		if (_getch() == SPA) {
+	bool introCont = false;
+	while (!introCont) {
+		switch (_getch()) {
+		case SPA:
+			introCont = true;
 			break;
-		}
-		if (_getch() == ENT) {
-			S.Tutorial;
+		case ENT:
+			S.Tutorial();
+			system("PAUSE");
+			introCont = true;
+			break;
+
+		default:
+			introCont = false;
+			break;
 		}
 	}
 
