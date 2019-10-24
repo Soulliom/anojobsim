@@ -44,7 +44,7 @@ public:
 	char charName[20] = "You";
 	int turnLimit = 0;
 	int seed = 0;
-	long long markGoal = 1000000000;
+	long long markGoal = 100000; //default 100,000
 	int stressCap = 100;
 
 	//Functions
