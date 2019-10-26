@@ -23,7 +23,7 @@ bool Turn::CheckTurn(bool check_over) {
 		numOfTurns++;
 
 		if (wage != 0) {
-			payment = rand() % (wage / 2) + (wage) * (1 + stress / stressCap);
+			payment = rand() % (wage) + (wage / 2) * (1 + stress / stressCap);
 			amOfMarks -= payment;
 
 			S.Specialty("Payments are due.", "You pay: ", payment, "");
@@ -129,13 +129,13 @@ void Turn::Work() {
 			system("PAUSE");
 		}
 		else {
-			randStress =(rand() % 10 + 5) * (1 + stress/stressCap);
+			randStress =(rand() % 10 + stressCap/8) * (1 + stress/stressCap);
 			stress += randStress;
 			S.Specialty("You work, although you had a pretty bad day.", "Your balance is increased by: ", wage, "Your stress is increased by: ", randStress);
 			system("PAUSE");
 		}
 
-		//Promotions counter/calculator
+		//Promotions counter/init
 		if (++promCount == actsUntilProm) {
 			if (randNumOfProm <= 0) { //if no more promotions left
 				S.Specialty("This job isn't willing to give you anymore promotions.", "", "");
@@ -203,7 +203,7 @@ void Turn::StrsRelief() {
 				StrsRelief();
 				break;
 			}
-			randStress = (rand() % hobbyStressR + hobbyStressR / 1.25) * (1 + (stress / stressCap));
+			randStress = (rand() % hobbyStressR + hobbyStressR / 1.25) * (1 + double(stress / stressCap));
 			stress -= randStress;
 
 			S.Specialty(tempYouHob, "Your stress is decreased by: ", randStress, "");

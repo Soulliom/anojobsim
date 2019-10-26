@@ -1,8 +1,7 @@
 //note: if stress overexceeds loss of day little stress relief. + loss of money?
 
 /* To Do */ 
-// Random funcs for stress dont work well? fix?
-// Make stress more impactful < < <
+// Illegal Actions
 // Win/loss (broke)
 // Other options
 // Debug debug debug
@@ -165,16 +164,11 @@ int main() {
 			break;
 
 		case THR:
-			//Gamble (win: stress relief + money, lose: stress + loss of money)
-			//T.Gamble();
-			break;
-
-		case FOR:
 			//Illegal (success: more stress + money, lose: stress + loss of turn)
 			//T.Illegal
 			break;
 
-		case FIV:
+		case FOR:
 			//Stress Relief
 			T.StrsRelief();
 			break;
@@ -184,7 +178,8 @@ int main() {
 			break;
 		
 		default:
-			T.numOfActions++;
+			continue;
+			break;
 
 		}
 		gameOver = T.CheckTurn(gameOver);	
