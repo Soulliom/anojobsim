@@ -13,18 +13,20 @@ private:
 	// Job
 	bool jobBool = false;
 	int randNumOfJobFound = 0; //Jobs Signed for 
-	int randWage = 0; //Random wage
-	int actsUntilProm = 0;
+	int actsUntilProm = 0; //Random actions until next promotion
 	int randNumOfProm = 0; //Random number of promotions
 	int randProm = 0; //Random mark promotion
 	int daysUntilFired = 0; //Days fired after not working
 	int promCount = 0;
 	int randJobMood = 0;
 
+	//Crime
+	int randSuccess = 0;
+
 	//Hobby
 	int hobbyStressR = 0;
 	bool isHobby = false;
-	std::string sHobby = "No Hobby Yet";
+	std::string sHobby = "No_Hobby_Yet";
 
 	//General
 	int rando = 0; //rand variable
@@ -38,7 +40,7 @@ public:
 	int amOfMarks = 5000; //Starting cash
 	int randStress = 0;
 	int stress = 0;
-	std::string career = "Start a new Job";
+	std::string career = "No_Job_Yet";
 
 	//Settings
 	char charName[20] = "You";
@@ -52,6 +54,8 @@ public:
 	bool CheckTurn(bool check_over);
 	void Job();
 	void Work();
+	void Crime();
+	void TaxEvasCheck();
 	void StrsRelief();
 	void StrsLimt();
 
