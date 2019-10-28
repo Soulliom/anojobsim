@@ -1,7 +1,10 @@
 //note: if stress overexceeds loss of day little stress relief. + loss of money?
 
 /* To Do */ 
-// Illegal Actions
+// Illegal Actions -- tax evasion> skip next payment/lose money
+//^, Drug use> lose tons of stress (50% || 75% of current stress)/ gain stress + lose a turn 
+// After payment / gain stress & if no job gain more stress
+// If not active in job cancel job and gain stress
 // Win/loss (broke)
 // Other options
 // Debug debug debug
@@ -104,7 +107,7 @@ int main() {
 
 			case FOR: //Mark setting
 				while (true) {
-					S.IntSpecificSet("Mark Goal, (0 for default. Cannot be below 10,000 nor higher than 1,000,000,000)", T.markGoal);
+					S.IntSpecificSet("Mark Goal, (0 for default. Cannot be below 10,000 nor higher than 1,000,000)", T.markGoal);
 					std::cin >> T.markGoal;
 
 					if (T.markGoal < 10000) {
@@ -164,16 +167,16 @@ int main() {
 			break;
 
 		case THR:
-			//Illegal (success: more stress + money, lose: stress + loss of turn)
-			//T.Illegal
+			//Crime ((generally) success: more stress + money, lose: stress + loss of turn if job, loss of money if no job)
+			T.Crime();
 			break;
 
 		case FOR:
-			//Stress Relief
 			T.StrsRelief();
 			break;
 
 		case ESC:
+			//S.Speciality();
 			return 0;
 			break;
 		

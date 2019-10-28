@@ -151,7 +151,7 @@ void Screens::Menu(int num_of_t, int cap_of_t, int num_of_a, int strs, int strs_
 		"                                                                      Actions Remaining : " << num_of_a <<"\n"
 		" 2. Work\n"
 		"                                                                      Stress: " << strs << " / " << strs_cap << "\n"
-		" 3. Illegal Actions\n"
+		" 3. Crime\n"
 		"                                                                      Balance: " << num_of_c << "\n"
 		" 4. Stress Relief                                                     Job: " << career << "\n"
 		"                                                                      Wage: " << wage << "\n"
