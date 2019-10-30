@@ -1,16 +1,6 @@
-#include <iostream>
-#include <istream>
-#include <conio.h>
-#include <time.h>
-#include <string>
-#include <windows.h>
-#include <vector>
-
 #include "../headers/Turn.h"
-#include "../headers/Screens.h"
 
-#define THR 51
-Screens S;
+Screens *Sc = new Screens();
 
 bool Turn::CheckTurn(bool check_over) {
 
@@ -25,7 +15,7 @@ bool Turn::CheckTurn(bool check_over) {
 			amOfMarks -= payment;
 
 			TaxEvasCheck();
-			S.Specialty(" Payments are due.", " You pay: ", payment, "");
+			Sc->Specialty(" Payments are due.", " You pay: ", payment, "");
 			system("PAUSE");
 		}
 	}
@@ -69,7 +59,7 @@ void Turn::InitSeed() {
 void Turn::Job() {
 	bool err = true;
 	while (err){
-		S.Specialty(" Please type in your perferred Job.", " (Job title should be shorter than 40 characters).", " (Use underscores as spaces)");
+		Sc->Specialty(" Please type in your perferred Job.", " (Job title should be shorter than 40 characters).", " (Use underscores as spaces)");
 
 		std::cin >> career;
 
@@ -95,14 +85,14 @@ void Turn::Job() {
 		randStress = rand() % 10; // Stress v
 		stress -= randStress;
 
-		S.Specialty(" Congrats! You found a Job!", " Your starting wage is:", wage, " Your stress is reduced by:", randStress);
+		Sc->Specialty(" Congrats! You found a Job!", " Your starting wage is:", wage, " Your stress is reduced by:", randStress);
 		system("PAUSE");
 	}
 	else { //fail to find job
 		randStress = rand() % 10 + 5; //add stress
 		stress += randStress;
 
-		S.Specialty(" Seems like you were not lucky enough to find a job.", " Your stress has been increased by:",randStress,"");
+		Sc->Specialty(" Seems like you were not lucky enough to find a job.", " Your stress has been increased by:",randStress,"");
 
 		//Reset job stats and add stress
 		career = "No_Job_Yet";
@@ -123,20 +113,20 @@ void Turn::Work() {
 			randStress = rand() % 4 + 1;
 			stress -= randStress;
 
-			S.Specialty(" You work for the day! I had a great day today!", " Your balance is increased by: ", wage, "Your stress is reduced by: ", randStress);
+			Sc->Specialty(" You work for the day! I had a great day today!", " Your balance is increased by: ", wage, "Your stress is reduced by: ", randStress);
 			system("PAUSE");
 		}
 		else {
 			randStress =(rand() % 10 + stressCap/8) * (1 + stress/stressCap);
 			stress += randStress;
-			S.Specialty(" You work, although you had a pretty bad day.", " Your balance is increased by: ", wage, "Your stress is increased by: ", randStress);
+			Sc->Specialty(" You work, although you had a pretty bad day.", " Your balance is increased by: ", wage, "Your stress is increased by: ", randStress);
 			system("PAUSE");
 		}
 
 		//Promotions counter/init
 		if (++promCount == actsUntilProm) {
 			if (randNumOfProm <= 0) { //if no more promotions left
-				S.Specialty(" This job isn't willing to give you anymore promotions.", "", "");
+				Sc->Specialty(" This job isn't willing to give you anymore promotionSc->", "", "");
 				system("PAUSE");
 			}
 			else if (randNumOfProm > 0) { //if promotions left
@@ -146,14 +136,14 @@ void Turn::Work() {
 				promCount = 0; //reset promotion count
 				wage += randProm; //increase working wage
 
-				S.Specialty(" You got promoted!", " You now will earn an extra: ", randProm, "");
+				Sc->Specialty(" You got promoted!", " You now will earn an extra: ", randProm, "");
 				system("PAUSE");
 			}
 		}
 	}
 
 	else { //dont have a job
-		S.Specialty(" You don't have a job.", " You walk around the city aimlessly.", " Your stress is increased by: 10");
+		Sc->Specialty(" You don't have a job.", " You walk around the city aimlessly.", " Your stress is increased by: 10");
 		system("PAUSE");
 
 		stress += 10;
@@ -161,7 +151,7 @@ void Turn::Work() {
 }
 
 void Turn::Crime() {
-	S.Specialty(" 1. Rob a Store", " 2. Tax Evasion", " 3. Drug Use");
+	Sc->Specialty(" 1. Rob a Store", " 2. Tax Evasion", " 3. Drug Use");
 	bool err = true;
 	while (err) {
 		switch (_getch()) {
@@ -173,17 +163,17 @@ void Turn::Crime() {
 				rando = rand() % 1500 + 500;
 				amOfMarks += rando;
 
-				S.Specialty(" You successfuly robbed a store", " Your balance is increased by: ", rando, "");
+				Sc->Specialty(" You successfuly robbed a store", " Your balance is increased by: ", rando, "");
 				system("PAUSE");
 				err = false;
 			}
 			else { //If not successful
-				rando = rand() % (1500 + 500) * (1 + double(stress / stressCap));
+				rando = rand() % (1500 + 500) * (1 + stress / stressCap);
 				randStress = rand() % (stressCap / 4) + 1;
 				amOfMarks -= rando;
 
 				TaxEvasCheck();
-				S.Specialty(" You failed to rob a store", " Your balance is decreased by: ", rando, " Your stress is increased by: ", randStress);
+				Sc->Specialty(" You failed to rob a store", " Your balance is decreased by: ", rando, " Your stress is increased by: ", randStress);
 				system("PAUSE");
 				err = false;
 			}
@@ -205,8 +195,8 @@ void Turn::TaxEvasCheck() {
 }
 
 void Turn::StrsRelief() {
-	std::string opHob = "2. ";
-	std::string youHob = "You ";
+	std::string opHob = " 2. ";
+	std::string youHob = " You ";
 	
 	opHob += sHobby;
 	const char* tempOpHob = opHob.c_str();
@@ -214,14 +204,14 @@ void Turn::StrsRelief() {
 	youHob += sHobby;
 	const char* tempYouHob = youHob.c_str();
 
-	S.Specialty(" You decide to take your mind off things for a while.", " 1. Start a new Hobby", tempOpHob);
+	Sc->Specialty(" You decide to take your mind off things for a while.", " 1. Start a new Hobby", tempOpHob);
 
 	bool err = true;
 	while (true) {
 		switch (_getch()) {
 		case ONE:
 			while (err) {
-				S.Specialty(" What would you like to do as a hobby?", " (Hobby should be shorter than 20 characters).", "(Use underscores as spaces)");
+				Sc->Specialty(" What would you like to do as a hobby?", " (Hobby should be shorter than 20 characters).", " (Use underscores as spaces)");
 
 				std::cin >> sHobby;
 
@@ -239,15 +229,15 @@ void Turn::StrsRelief() {
 
 		case TWO:
 			if (!isHobby) {
-				S.Specialty(" You dont have a hobby, Please try starting one first","","");
+				Sc->Specialty(" You dont have a hobby, Please try starting one first","","");
 				system("PAUSE");
 				StrsRelief();
 				break;
 			}
-			randStress = (rand() % hobbyStressR + hobbyStressR / 1.25) * (1 + double(stress / stressCap));
+			randStress = (rand() % hobbyStressR + hobbyStressR / 1.25) * (1 + stress / stressCap);
 			stress -= randStress;
 
-			S.Specialty(tempYouHob, " Your stress is decreased by: ", randStress, "");
+			Sc->Specialty(tempYouHob, " Your stress is decreased by: ", randStress, "");
 			system("PAUSE");
 			break;
 
@@ -267,6 +257,6 @@ void Turn::StrsLimt() {
 	randStress = stressCap / 4;
 	stress -= randStress;
 
-	S.Specialty(" You've gone over your stress limit, a turn is skipped.", " Your stress is decreased by: ", randStress, "");
+	Sc->Specialty(" You've gone over your stress limit, a turn is skipped.", " Your stress is decreased by: ", randStress, "");
 	system("PAUSE");
 }
