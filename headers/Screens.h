@@ -13,8 +13,7 @@ private:
 public:
 	void IntroScr();
 	void TutorialScr();
-	void SettingsScr(char* name_cur, int strs_cur, int seed_cur, int mark_cur, int turn_cur);
-	void CharSpecificSet(const char *setting_name, char setting_current[]);
+	void SettingsScr(int strs_cur, int seed_cur, int mark_cur, int turn_cur);
 	void IntSpecificSet(const char* setting_name, int setting_current);
 	
 	void Menu(int num_of_t, int cap_of_t, int num_of_a, int strs, int strs_cap, int num_of_c, std::string career, int wage);

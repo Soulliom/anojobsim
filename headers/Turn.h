@@ -19,6 +19,8 @@
 class Turn {
 
 private:
+	Screens Sc;
+
 	// Job
 	bool jobBool = false;
 	int randNumOfJobFound = 0; //Jobs Signed for 
@@ -52,7 +54,6 @@ public:
 	std::string career = "No_Job_Yet";
 
 	//Settings
-	char charName[20] = "You";
 	int turnLimit = 0;
 	int seed = 0;
 	long long markGoal = 100000; //default 100,000
