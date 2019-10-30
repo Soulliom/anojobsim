@@ -1,11 +1,20 @@
-#pragma once
 #include <iostream>
 #include <conio.h>
 #include <stdlib.h>
+#include <istream>
+#include <time.h>
+#include <string>
+#include <windows.h>
+
+#ifndef TURN_H
+#define TURN_H
+
+#include "Screens.h"
 
 /* Preproccessor Keystoke Buttons */
 #define ONE 49
 #define TWO 50
+#define THR 51
 
 class Turn {
 
@@ -62,3 +71,5 @@ public:
 	//Job
 	int wage = 0;
 };
+
+#endif

@@ -1,18 +1,19 @@
-#pragma once
 #include <iostream>
 #include <conio.h>
 #include <stdlib.h>
+#include <windows.h>
 
-#include "Turn.h"
+#ifndef SCREEN_H
+#define SCREEN_H
 
 class Screens {
 
 private:
 
 public:
-	void Intro();
-	void Tutorial();
-	void Settings(char* name_cur, int strs_cur, int seed_cur, int mark_cur, int turn_cur);
+	void IntroScr();
+	void TutorialScr();
+	void SettingsScr(char* name_cur, int strs_cur, int seed_cur, int mark_cur, int turn_cur);
 	void CharSpecificSet(const char *setting_name, char setting_current[]);
 	void IntSpecificSet(const char* setting_name, int setting_current);
 	
@@ -21,3 +22,5 @@ public:
 	void Specialty(const char* text1, const char* text2, int text3, const char* text4);
 	void Specialty(const char* text1, const char* text2, int text3, const char* text4, int text5);
 };
+
+#endif
