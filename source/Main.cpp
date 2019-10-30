@@ -49,26 +49,23 @@ int main() {
 	//Settings
 	bool exit = false;
 	while (!exit) { 
-		S.SettingsScr(T.charName, T.stressCap, T.seed, T.markGoal, T.turnLimit); //Run settings screen
+		S.SettingsScr(T.stressCap, T.seed, T.markGoal, T.turnLimit); //Run settings screen
 		switch (_getch()) {
-			case ONE: //Name setting
-				Set.NameSet();
+
+			case ONE: //Stress setting
+				T.stressCap = Set.StrsSet();
 				break;
 
-			case TWO: //Stress setting
-				Set.StrsSet();
+			case TWO: //Seed setting
+				T.seed = Set.SeedSet();
 				break;
 
-			case THR: //Seed setting
-				Set.SeedSet();
+			case THR: //Mark setting
+				T.markGoal = Set.MarkSet();
 				break;
 
-			case FOR: //Mark setting
-				Set.MarkSet();
-				break;
-
-			case FIV: //Limit on Turns setting
-				Set.TLmtSet();
+			case FOR: //Limit on Turns setting
+				T.turnLimit = Set.TLmtSet();
 				break;
 
 			case ENT: //Start game / end settings 

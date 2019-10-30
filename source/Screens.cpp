@@ -45,7 +45,7 @@ void Screens::TutorialScr() {
 		"  *----------------------------------------------------------------------------------------------------------------*\n";
 }
 
-void Screens::SettingsScr(char *name_cur, int strs_cur, int seed_cur, int mark_cur, int turn_cur) {
+void Screens::SettingsScr(int strs_cur, int seed_cur, int mark_cur, int turn_cur) {
 	system("CLS");
 	std::cout << "\n" <<
 		"  *----------------------------------------------------------------------------------------------------------------*\n"
@@ -53,40 +53,17 @@ void Screens::SettingsScr(char *name_cur, int strs_cur, int seed_cur, int mark_c
 		"                                                     Job Simulator\n"
 		"                                                       Settings\n"
 		"  \n"
-		"   1. Name || " << name_cur << "\n"
+		"   1. Stress Limit || " << strs_cur << "\n"
 		"  \n"
-		"   2. Stress Limit || " << strs_cur << "\n"
+		"   2. Seed (Blank if Random) || " << seed_cur << "\n"
 		"  \n"
-		"   3. Seed (Blank if Random) || " << seed_cur << "\n"
+		"   3. Mark Goal  || " << mark_cur << "\n"
 		"  \n"
-		"   4. Mark Goal  || " << mark_cur << "\n"
+		"   4. Limited Turns (Blank if Unlimited) || " << turn_cur << "\n"
 		"  \n"
-		"   5. Limited Turns (Blank if Unlimited) || " << turn_cur << "\n"
+		"  \n"
 		"  \n"
 		"                                                                                             Press Enter to Continue\n"
-		"  *----------------------------------------------------------------------------------------------------------------*\n";
-	Sleep(500);
-}
-
-void Screens::CharSpecificSet(const char *setting_name, char setting_current[]) {
-	system("CLS");
-	std::cout << "\n" <<
-	    "  *----------------------------------------------------------------------------------------------------------------*\n"
-		"  \n"
-		"                                                     Job Simulator\n"
-		"                                                       Settings\n"
-		"  \n"
-		"  "<<setting_name<<"\n"
-		"  \n"
-		"  "<< "Current Setting: " << setting_current <<"\n"
-		"  \n"
-		"  \n"
-		"  \n"
-		"  \n"
-		"  \n"
-		"  \n"
-		"  \n"
-		"                                                                                              Press Enter to go Back\n"
 		"  *----------------------------------------------------------------------------------------------------------------*\n";
 	Sleep(500);
 }
