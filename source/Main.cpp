@@ -1,6 +1,7 @@
 //note: if stress overexceeds loss of day little stress relief. + loss of money?
 
-/* To Do */ 
+/* To Do */
+// Gain stress if no job
 // Illegal Actions -- tax evasion> skip next payment/lose money
 //^, Drug use> lose tons of stress (50% || 75% of current stress)/ gain stress + lose a turn 
 // After payment / gain stress & if no job gain more stress
@@ -27,7 +28,6 @@
 #define TWO 50
 #define THR 51
 #define FOR 52
-#define FIV 53
 #define SPA 32
 #define ESC 27
 #define ENT 13 
