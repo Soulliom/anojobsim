@@ -1,3 +1,3 @@
-# CppAnotherCMDJobSim
+# anojobsim
 
-Just a little game I'm working on during my free time. Very very unfinished currently
+Just Another Job Simulator game in command prompt. My first Github rep. :)
