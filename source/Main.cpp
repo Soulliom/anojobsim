@@ -49,29 +49,30 @@ int main() {
 	//Settings
 	bool exit = false;
 	while (!exit) { 
+		
 		S.SettingsScr(T.stressCap, T.seed, T.markGoal, T.turnLimit); //Run settings screen
 		switch (_getch()) {
 
-			case ONE: //Stress setting
-				T.stressCap = Set.StrsSet();
-				break;
+		case ONE: //Stress setting
+			T.stressCap = Set.StrsSet();
+			break;
 
-			case TWO: //Seed setting
-				T.seed = Set.SeedSet();
-				break;
+		case TWO: //Seed setting
+			T.seed = Set.SeedSet();
+			break;
 
-			case THR: //Mark setting
-				T.markGoal = Set.MarkSet();
-				break;
+		case THR: //Mark setting
+			T.markGoal = Set.MarkSet();
+			break;
 
-			case FOR: //Limit on Turns setting
-				T.turnLimit = Set.TLmtSet();
-				break;
+		case FOR: //Limit on Turns setting
+			T.turnLimit = Set.TLmtSet();
+			break;
 
-			case ENT: //Start game / end settings 
-				T.InitSeed();
-				exit = true;
-				break;
+		case ENT: //Start game / end settings 
+			T.InitSeed();
+			exit = true;
+			break;
 		}
 	}
 
@@ -80,6 +81,7 @@ int main() {
 
 		S.Menu(T.numOfTurns, T.turnLimit, T.numOfActions, T.stress, T.stressCap, T.amOfMarks, T.career, T.wage);
 		switch (_getch()) {
+				
 		case ONE:
 			T.Job();
 			break;
