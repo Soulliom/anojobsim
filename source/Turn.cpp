@@ -104,14 +104,14 @@ void Turn::Job() {
 		randStress = rand() % 10; // Stress v
 		stress -= randStress;
 
-		Sc.Specialty(" Congrats! You found a Job!", " Your starting wage is:", wage, " Your stress is reduced by:", randStress);
+		Sc.Specialty(" Congrats! You found a Job!", " Your starting wage is:", wage, " Your stress is reduced by: ", randStress);
 		system("PAUSE");
 	}
 	else { //fail to find job
 		randStress = rand() % 10 + 5; //add stress
 		stress += randStress;
 
-		Sc.Specialty(" Seems like you were not lucky enough to find a job.", " Your stress has been increased by:",randStress,"");
+		Sc.Specialty(" Seems like you were not lucky enough to find a job.", " Your stress has been increased by: ", randStress,"");
 
 		//Reset job stats and add stress
 		career = "No_Job_Yet";
@@ -132,13 +132,13 @@ void Turn::Work() {
 			randStress = rand() % 4 + 1;
 			stress -= randStress;
 
-			Sc.Specialty(" You work for the day! I had a great day today!", " Your balance is increased by: ", wage, "Your stress is reduced by: ", randStress);
+			Sc.Specialty(" You work for the day! I had a great day today!", " Your balance is increased by: ", wage, " Your stress is reduced by: ", randStress);
 			system("PAUSE");
 		}
 		else {
 			randStress =(rand() % 10 + stressCap/8) * (1 + stress/stressCap);
 			stress += randStress;
-			Sc.Specialty(" You work, although you had a pretty bad day.", " Your balance is increased by: ", wage, "Your stress is increased by: ", randStress);
+			Sc.Specialty(" You work, although you had a pretty bad day.", " Your balance is increased by: ", wage, " Your stress is increased by: ", randStress);
 			system("PAUSE");
 		}
 
