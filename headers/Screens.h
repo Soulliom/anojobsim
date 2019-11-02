@@ -1,3 +1,7 @@
+/*
+This class contains all the different types of screens used in the game
+*/
+
 #include <iostream>
 #include <conio.h>
 #include <stdlib.h>

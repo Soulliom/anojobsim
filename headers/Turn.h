@@ -1,3 +1,7 @@
+/*
+This class contains all the ingame funcitons and variables
+*/
+
 #include <iostream>
 #include <conio.h>
 #include <stdlib.h>
@@ -33,6 +37,7 @@ private:
 
 	//Crime
 	int randSuccess = 0;
+	bool taxEvasion = false;
 
 	//Hobby
 	int hobbyStressR = 0;
@@ -46,12 +51,16 @@ private:
 public:
 
 	//Ingame
-	int numOfTurns = 1;
-	int numOfActions = 2;
-	int amOfMarks = 5000; //Starting cash
+	int numOfTurns = 1; //Turns
+	int numOfActions = 2; //Actions in a turn
+	int wage = 0; //Job wage
+	int balance = 5000; //Starting cash 5000
 	int randStress = 0;
-	int stress = 0;
-	std::string career = "No_Job_Yet";
+	int stress = 0; //Current stress
+	std::string career = "No_Job_Yet"; 
+
+	//Game
+	bool gameOver = false; //To see
 
 	//Settings
 	int turnLimit = 0;
@@ -65,12 +74,8 @@ public:
 	void Job();
 	void Work();
 	void Crime();
-	void TaxEvasCheck();
 	void StrsRelief();
 	void StrsLimt();
-
-	//Job
-	int wage = 0;
 };
 
 #endif
