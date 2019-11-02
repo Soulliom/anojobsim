@@ -39,18 +39,21 @@ bool Turn::CheckTurn(bool check_over) {
 		//Loss by lack of turns
 		Sc.Specialty(" You lost the game due to a lack of turns!", " Thank you for playing!", "");
 		system("PAUSE");
+		return true;
 	}
 
 	else if (balance < 0) {
 		//Loss by lack of marks
 		Sc.Specialty(" You lost the game due to a lack of funds!", " Thank you for playing!", "");
 		system("PAUSE");
+		return true;
 	}
 
 	else if (balance >= markGoal) {
 		//Win by reaching goal
 		Sc.Specialty(" You won the game!", " Thank you for playing!", "");
 		system("PAUSE");
+		return true;
 	}
 
 	else {

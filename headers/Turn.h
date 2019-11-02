@@ -60,7 +60,7 @@ public:
 	std::string career = "No_Job_Yet"; 
 
 	//Game
-	bool gameOver = false; //To see
+	bool gameOver = false; //var to quit game if over
 
 	//Settings
 	int turnLimit = 0;
