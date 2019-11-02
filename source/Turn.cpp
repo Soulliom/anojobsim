@@ -8,13 +8,22 @@ bool Turn::CheckTurn(bool check_over) {
 		numOfActions = 2;
 		numOfTurns++;
 
+		//Payment check
 		if (wage != 0) {
-			payment = rand() % (wage) + (wage / 2) * (1 + stress / stressCap);
-			amOfMarks -= payment;
+			if (taxEvasion) {
+				taxEvasion = false;
 
-			TaxEvasCheck();
-			Sc.Specialty(" Payments are due.", " You pay: ", payment, "");
-			system("PAUSE");
+				Sc.Specialty(" You don't owe anything this turn.", " (Tax Evasion)", "");
+				system("PAUSE");
+			}
+
+			else {
+				payment = rand() % (wage)+(wage / 2) * (1 + stress / stressCap);
+				balance -= payment;
+
+				Sc.Specialty(" Payments are due.", " You pay: ", payment, "");
+				system("PAUSE");
+			}
 		}
 	}
 	//Stress Check
@@ -28,14 +37,20 @@ bool Turn::CheckTurn(bool check_over) {
 	//Win & Loss Conditions
 	if (numOfTurns == turnLimit) {
 		//Loss by lack of turns
+		Sc.Specialty(" You lost the game due to a lack of turns!", " Thank you for playing!", "");
+		system("PAUSE");
 	}
 
-	else if (amOfMarks < 0) {
+	else if (balance < 0) {
 		//Loss by lack of marks
+		Sc.Specialty(" You lost the game due to a lack of funds!", " Thank you for playing!", "");
+		system("PAUSE");
 	}
 
-	else if (amOfMarks >= markGoal) {
+	else if (balance >= markGoal) {
 		//Win by reaching goal
+		Sc.Specialty(" You won the game!", " Thank you for playing!", "");
+		system("PAUSE");
 	}
 
 	else {
@@ -44,10 +59,13 @@ bool Turn::CheckTurn(bool check_over) {
 	}
 }
 
+//Initiate seed
 void Turn::InitSeed() {
+	//completely randomized
 	if (seed == 0) {
 		srand(time(NULL));
 	}
+	//set seed
 	else {
 		srand(seed);
 	}
@@ -103,7 +121,7 @@ void Turn::Job() {
 // Work Option
 void Turn::Work() {
 	if (jobBool) {
-		amOfMarks += wage; //get paid
+		balance += wage; //get paid
 
 		//Job stress
 		randJobMood = rand() % 10;
@@ -148,6 +166,7 @@ void Turn::Work() {
 	}
 }
 
+//Crime function, Robbing(gives money/loses money), Evasion(skip next payment/skip next action), Drug(reduce major stress/payment)
 void Turn::Crime() {
 	Sc.Specialty(" 1. Rob a Store", " 2. Tax Evasion", " 3. Drug Use");
 	bool err = true;
@@ -159,18 +178,17 @@ void Turn::Crime() {
 
 			if (randSuccess > 6) { //If successful
 				rando = rand() % 1500 + 500;
-				amOfMarks += rando;
+				balance += rando;
 
-				Sc.Specialty(" You successfuly robbed a store", " Your balance is increased by: ", rando, "");
+				Sc.Specialty(" You successfully robbed a store", " Your balance is increased by: ", rando, "");
 				system("PAUSE");
 				err = false;
 			}
 			else { //If not successful
-				rando = rand() % (1500 + 500) * (1 + stress / stressCap);
+				rando = rand() % (1500 + 500) * (1 + (stress / stressCap));
 				randStress = rand() % (stressCap / 4) + 1;
-				amOfMarks -= rando;
+				balance -= rando;
 
-				TaxEvasCheck();
 				Sc.Specialty(" You failed to rob a store", " Your balance is decreased by: ", rando, " Your stress is increased by: ", randStress);
 				system("PAUSE");
 				err = false;
@@ -179,20 +197,86 @@ void Turn::Crime() {
 
 		case TWO:
 			//Tax Evasion
+			randSuccess = rand() % 9 + 1;
+
+			if (randSuccess > 6) {
+				taxEvasion = true;
+
+				Sc.Specialty(" You successfully commited tax evasion.", " Your next payment will be skipped", "");
+				system("PAUSE");
+				err = false;
+			}
+			else if(randSuccess > 3){
+				Sc.Specialty(" You failed to commit tax evasion", " Fortunately you were not caught.", "");
+				system("PAUSE");
+				err = false;
+			}
+			else {
+				Sc.Specialty(" You failded to commit tax evasion", " Unfortunately you were caught, you skip an extra action.", "");
+				system("PAUSE");
+
+				CheckTurn(gameOver);
+				err = false;
+			}
 			break;
 
 		case THR:
 			//Drug use
+			int temptype = 0;
+			randSuccess = rand() % 9 + 1;
+
+			// This section finds the amount of stress decreased
+			if (randSuccess > 5) {
+				rando = stressCap / 5;
+				stress -= rando;
+				temptype = randSuccess;
+
+				Sc.Specialty(" You do some Mary Jane.", " Your stress is decreased by: ", rando, "");
+				system("PAUSE");
+			}
+			else if (randSuccess > 2) {
+				rando = stressCap / 4;
+				stress -= rando;
+				temptype = randSuccess;
+
+				Sc.Specialty(" You do some Crack Cocaine", " Your stress is decreased by: ", rando, "");
+				system("PAUSE");
+			}
+			else {
+				rando = stressCap / 2;
+				stress -= rando;
+				temptype = randSuccess;
+
+				Sc.Specialty(" You do some Crystal Methamphetamine", " Your stress is decreased by: ", rando, "");
+				system("PAUSE");
+			}
+
+			//This section randomizes if the play will be fined or not
+			randSuccess = rand() % 9 + 1;
+
+			if (randSuccess > 5) {
+				Sc.Specialty(" Your drug use goes undetected.", "", "");
+				system("PAUSE");
+
+				err = false;
+			}
+			else {
+				rando = balance / (temptype * 10);
+				balance -= rando;
+
+				Sc.Specialty(" Your drug use is detected by the local police.", " Your balance is decreased by: ", rando, "");
+				system("PAUSE");
+
+				err = false;
+			}
 			break;
 		}
 	}
 }
 
-void Turn::TaxEvasCheck() {
-
-}
-
+//Hobby Function
 void Turn::StrsRelief() {
+	//This combines the char* of the hobby and turns it into a string while combining it with menu-friendly strings
 	std::string opHob = " 2. ";
 	std::string youHob = " You ";
 	
@@ -202,11 +286,13 @@ void Turn::StrsRelief() {
 	youHob += sHobby;
 	const char* tempYouHob = youHob.c_str();
 
+	//Hobby menu
 	Sc.Specialty(" You decide to take your mind off things for a while.", " 1. Start a new Hobby", tempOpHob);
 
 	bool err = true;
 	while (true) {
 		switch (_getch()) {
+		//Create new hobby
 		case ONE:
 			while (err) {
 				Sc.Specialty(" What would you like to do as a hobby?", " (Hobby should be shorter than 20 characters).", " (Use underscores as spaces)");
@@ -225,6 +311,7 @@ void Turn::StrsRelief() {
 			hobbyStressR = rand() % (stressCap / rando) + 5;
 			break;
 
+		//Continue old hobby
 		case TWO:
 			if (!isHobby) {
 				Sc.Specialty(" You dont have a hobby, Please try starting one first","","");
@@ -232,7 +319,7 @@ void Turn::StrsRelief() {
 				StrsRelief();
 				break;
 			}
-			randStress = (rand() % hobbyStressR + hobbyStressR / 1.25) * (1 + stress / stressCap);
+			randStress = (rand() % hobbyStressR + hobbyStressR / 1.25) * (1 + (stress / stressCap));
 			stress -= randStress;
 
 			Sc.Specialty(tempYouHob, " Your stress is decreased by: ", randStress, "");
@@ -247,14 +334,16 @@ void Turn::StrsRelief() {
 	}
 }
 
+//Function checks if stress has exceeded stressCap and delievers a punishment
 void Turn::StrsLimt() {
-	numOfTurns++;
-	if (stress > stressCap) {
+	if (stress >= stressCap) {
 		stress = stressCap;
 	}
 	randStress = stressCap / 4;
 	stress -= randStress;
 
-	Sc.Specialty(" You've gone over your stress limit, a turn is skipped.", " Your stress is decreased by: ", randStress, "");
+	Sc.Specialty(" You've gone over your stress limit, an action is skipped.", " Your stress is decreased by: ", randStress, "");
+
+	gameOver = CheckTurn(gameOver);
 	system("PAUSE");
 }

@@ -1,15 +1,11 @@
-//note: if stress overexceeds loss of day little stress relief. + loss of money?
+/*
+Game created by Soulliom (George) 
 
-/* To Do */
-// Gain stress if no job
-// Illegal Actions -- tax evasion> skip next payment/lose money
-//^, Drug use> lose tons of stress (50% || 75% of current stress)/ gain stress + lose a turn 
-// After payment / gain stress & if no job gain more stress
-// If not active in job cancel job and gain stress
-// Win/loss (broke)
-// Other options
-// Debug debug debug
-// Cleaner code
+Just supposed to be a little fun project I made, I enjoy rogue-likes and I was curious if I could make a somewhat decently sized project with C++
+Although Im not perfect. I am happy I was able to finish this project without giving up on it :). Reccomendations and comments are a pleasure, please
+contact me thru github or whatever (Soulliom) and tell me how you feel about this. Everything is randomized and alot of things are customizable.
+
+*/
 
 #include <iostream>
 #include <conio.h>
@@ -32,9 +28,7 @@
 #define ESC 27
 #define ENT 13 
 
-/* Variables */
-bool gameOver = false;
-bool win = false;
+bool esc = false;
 
 int main() {
 	
@@ -76,37 +70,53 @@ int main() {
 	}
 
 	//Game
-	while (!gameOver) {
+	while (!T.gameOver) {
 
-		S.Menu(T.numOfTurns, T.turnLimit, T.numOfActions, T.stress, T.stressCap, T.amOfMarks, T.career, T.wage);
+		S.Menu(T.numOfTurns, T.turnLimit, T.numOfActions, T.stress, T.stressCap, T.balance, T.career, T.wage); //Run game screen
 		switch (_getch()) {
-		case ONE:
+
+		case ONE: //Job option
 			T.Job();
 			break;
 
-		case TWO:
+		case TWO: //Work option
 			T.Work();
 			break;
 
-		case THR:
-			//Crime ((generally) success: more stress + money, lose: stress + loss of turn if job, loss of money if no job)
+		case THR: //Crime option
 			T.Crime();
 			break;
 
-		case FOR:
+		case FOR: //Stress Relief/Hobby option
 			T.StrsRelief();
 			break;
 
-		case ESC:
-			//S.Speciality();
-			return 0;
-			break;
-		
+		case ESC: //Exit Game
+			while (!esc) {
+				S.Specialty(" Are you sure you'd like to exit the game?", " 1. No", " 2. Yes");
+
+				switch (_getch()) {
+				case ONE: //NO
+					esc = true;
+					break;
+
+				case TWO: //YES
+					S.Specialty(" Thanks for playing!", "", "");
+					return 0;
+					break;
+
+				default:
+					continue;
+					break;
+				}
+			}
+			esc = false;
+
 		default:
 			continue;
 			break;
-
 		}
-		gameOver = T.CheckTurn(gameOver);	
+		//Check turn function finds if any win/loss conditions are met or if other functions must be called to limit stress or add payments
+		T.gameOver = T.CheckTurn(T.gameOver);	
 	}
 }
