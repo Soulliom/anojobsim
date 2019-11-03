@@ -98,6 +98,7 @@ void Turn::Job() {
 		wage = rand() % 500 + 500; //Base wage
 		randNumOfProm = rand() % rando + 2 / 2 + 1; //amount of promotions
 		actsUntilProm = rand() % 5 + 5; //how many acts until a promotion
+		promCount = 0;
 		jobBool = true;
 
 		//Stress
@@ -145,7 +146,7 @@ void Turn::Work() {
 		//Promotions counter/init
 		if (++promCount == actsUntilProm) {
 			if (randNumOfProm <= 0) { //if no more promotions left
-				Sc.Specialty(" This job isn't willing to give you anymore promotionSc.", "", "");
+				Sc.Specialty(" This job isn't willing to give you anymore promotions.", "", "");
 				system("PAUSE");
 			}
 			else if (randNumOfProm > 0) { //if promotions left
@@ -346,7 +347,7 @@ void Turn::StrsLimt() {
 	stress -= randStress;
 
 	Sc.Specialty(" You've gone over your stress limit, an action is skipped.", " Your stress is decreased by: ", randStress, "");
+	system("PAUSE");
 
 	gameOver = CheckTurn(gameOver);
-	system("PAUSE");
 }
