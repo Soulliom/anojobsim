@@ -2,4 +2,4 @@
 
 Just Another Job Simulator game in command prompt. My first Github rep. :)
 
-NOTE: THIS CAN ONLY RUN ON WINDOWS OS DUE TO SEVERAL WINDOWS COMMANDS BEING USED!
+note: this can only run on windows os due to the use of several windows commands.
